@@ -30,12 +30,17 @@ Initializing the JumpCloud Class:
 
 ```
     jumpcloud.person(
-            username = "harry",
-            firstname = "Harry",
-            lastname = "Koddem",
-            email = "harry@e-tunity.nl",
-            sshPublicKeys = [])
-        )
+     	username = "harry",
+        firstname = "Harry",
+        lastname = "Kodden",
+        email = "harry@e-tunity.nl",
+        sshPublicKeys = [])
+    )
+```
+
+* You can add an array of sshPublicKeys. For now they are expected to comply with format:
+```
+ssh-rsa <hex key> <name>"
 ```
 
 Register a GROUP with the **group()** method:
@@ -44,7 +49,7 @@ Register a GROUP with the **group()** method:
 	jumpcloud.group("My First Group", [ "harry" ])
 ```
 
-Calling the **cleanup()** method, will remove existing USERS, GROUPS and GROUP-MEMBERS from your JumpCloud organization that ar not re-declared.
+Calling the **cleanup()** method, will remove existing USERS, GROUPS and GROUP-MEMBERS from your JumpCloud organization that are not re-declared.
 
 ```
 	jumpcloud.cleanup()

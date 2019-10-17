@@ -19,6 +19,7 @@ class JumpCloud(object):
     persons = {}
     groups = {}
 
+
     def __init__(self, url, key):
       self.url = url
       self.key = key
@@ -27,7 +28,7 @@ class JumpCloud(object):
       for record in self.api('/api/systemusers')['results']:
         self.persons[record['id']] = { 'checked': False, 'record': record }
 
-      # Read existing grouos...
+      # Read existing groups...
       for record in self.api('/api/v2/usergroups'):
         self.groups[record['id']]  = { 'name': record['name'], 'members': {} }
 
@@ -38,8 +39,10 @@ class JumpCloud(object):
 
       return self
 
+
     def __str__(self):
         return "Persons: {}\nGroups: {}".format(self.persons, self.groups)
+
 
     def api(self, request, method='GET', data=None):
 
@@ -71,6 +74,7 @@ class JumpCloud(object):
 
       return None
 
+
     def lookup_person(self, username):
       for uid in self.persons.keys():
         if equal(self.persons[uid]['record']['username'], username):
@@ -78,12 +82,14 @@ class JumpCloud(object):
 
       return None
 
+
     def lookup_group(self, name):
       for gid in self.groups.keys():
         if equal(self.groups[gid]['name'], name):
           return gid
 
       return None
+
 
     def person(self, username, firstname, lastname, email, sshPublicKeys=None):
 
@@ -175,6 +181,7 @@ class JumpCloud(object):
 
       return self
 
+
     def group(self, name, members):
 
       gid = self.lookup_group(name)
@@ -208,7 +215,8 @@ class JumpCloud(object):
         self.groups[gid]['members'][uid] = True
 
         return self
-        
+
+
     def cleanup(self):
       print("Cleaning....")
 
